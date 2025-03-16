@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "../src/Pages/Login.js";
+import SignupPage from "../src/Pages/Signup.js";
+import HomePage from "../src/Pages/Home.js";
+import PrivateRoute from "./PrivateRoute.js";
+import AuthProvider from "../src/Context/AuthContext.js";
+import { TaskProvider } from "../src/Context/TaskContext";
+import { ThemeProvider } from "../src/Context/ThemeContext.js";
+import { DeleteProvider } from "../src/Context/DeleteContext.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router> {/* ✅ Moved Router to the top */}
+      <AuthProvider> 
+        <ThemeProvider>
+          <TaskProvider>
+            <DeleteProvider>
+              <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                
+                <Route element={<PrivateRoute />}>
+                  <Route path="/Home" element={<HomePage />} />
+                </Route>
+              </Routes>
+            </DeleteProvider>
+          </TaskProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -1,0 +1,20 @@
+.bluebuttonstyle{
+background-Color: #4477CA;
+color: white;
+font-Size: 1.3em;
+border-Radius: 10px;
+font-Weight:500;
+width:100%;
+height:100%;
+border:none;
+box-shadow:  0 0 2px lightgray;
+cursor: pointer;
+margin-top: 2%;
+border-color: none;
+}
+
+.bluebuttonstyle:hover
+{
+    background-Color: #6da2f8;
+
+}
